@@ -5,7 +5,6 @@
 from abc import ABC
 from abc import abstractmethod
 
-from transformers import AutoTokenizer
 from .bert_tokenization import FullTokenizer as FullBertTokenizer
 from .gpt2_tokenization import GPT2Tokenizer
 def build_tokenizer(args):
@@ -543,6 +542,7 @@ class _HFTokenizer(AbstractTokenizer):
     def __init__(self, tokenizer_name_or_path,max_seq_len):
         name = tokenizer_name_or_path
         super().__init__(name)
+        from transformers import AutoTokenizer
         self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_name_or_path,padding_side="right",use_fast=False)
         
         DEFAULT_PAD_TOKEN = "[PAD]"
