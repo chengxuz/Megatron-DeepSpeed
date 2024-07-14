@@ -11,6 +11,7 @@ CHECKPOINT_PATH=$1 # <Specify path>
 VOCAB_FILE=$2 #<Specify path to file>/gpt2-vocab.json
 MERGE_FILE=$3 #<Specify path to file>/gpt2-merges.txt
 DATA_PATH=$4 #<Specify path and file prefix>_text_document
+TENSORBOARD_LOGS_PATH=$5 #<Specify path>
 
 ZERO_STAGE=0
 
@@ -126,4 +127,5 @@ torchrun $DISTRIBUTED_ARGS \
        --swiglu \
        --normalization rmsnorm \
        --disable-bias-linear \
+       --tensorboard-dir $TENSORBOARD_LOGS_PATH \
        $ds_args
